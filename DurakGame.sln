@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DurakGame", "DurakGame.csproj", "{22C51BC6-FD89-4370-8F71-1A34421766BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22C51BC6-FD89-4370-8F71-1A34421766BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C51BC6-FD89-4370-8F71-1A34421766BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C51BC6-FD89-4370-8F71-1A34421766BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C51BC6-FD89-4370-8F71-1A34421766BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8464EA82-F2D8-470C-9967-3607BCF6B498}
+	EndGlobalSection
+EndGlobal

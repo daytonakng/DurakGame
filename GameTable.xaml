@@ -1,0 +1,130 @@
+﻿<Page x:Class="DurakGame.GameTable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DurakGame"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="GameTable">
+
+    <Grid x:Name="mainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/img/tabletop.jpg"></ImageBrush>
+        </Grid.Background>
+
+        <StackPanel x:Name="durakLogoImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800" Height="400" Orientation="Horizontal">
+            <Image HorizontalAlignment="Left" Width="300" Height="300" Source="img/cards.png"></Image>
+            <Image HorizontalAlignment="Left" Width="500" Height="300" Source="img/durak.png"></Image>
+        </StackPanel>
+
+        <!--кнопки-->
+
+        <Border x:Name="startButtonBorder" CornerRadius="15" BorderBrush="#FFF3F0F0" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="100" Background="#FF8B5B43">
+            <Button x:Name="startButton" BorderThickness="0" Background="Transparent" Content="Играть" FontSize="16" Foreground="White" Click="startButton_Click" Cursor="Hand"/>
+        </Border>
+        <Border CornerRadius="15" BorderBrush="#FFF3F0F0" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100" Background="#FF8B5B43">
+            <Button x:Name="exitButton" BorderThickness="0" Background="Transparent" Content="Выйти" FontSize="16" Foreground="White" Click="exitButton_Click" Cursor="Hand"/>
+        </Border>
+
+        <TextBox x:Name="logTextBox" Width="400" Height="150" HorizontalAlignment="Left" Margin="390,20,0,0" IsReadOnly="True" Background="Transparent" BorderThickness="0" TextWrapping="WrapWithOverflow" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Hidden" AcceptsReturn="True">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type ScrollViewer}">
+                    <EventSetter Event="ScrollChanged" Handler="AutoScrolltoEnd"></EventSetter>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+        <!--карточный грид-->
+        
+        <Grid x:Name="gameAreaGrid" Width="900" Height="720" Margin="0,25,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--верхний ряд-->
+
+            <Image x:Name="card0Player2Image" Grid.Row="1" Grid.Column="1" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card1Player2Image" Grid.Row="1" Grid.Column="2" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card2Player2Image" Grid.Row="1" Grid.Column="3" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card3Player2Image" Grid.Row="1" Grid.Column="4" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card4Player2Image" Grid.Row="1" Grid.Column="5" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card5Player2Image" Grid.Row="1" Grid.Column="6" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+
+            <Border x:Name="nextSecondHandButtonBorder" Grid.Row="0" Grid.Column="6" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
+                <Button Content=">" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="nextSecondHandButton" Cursor="Hand" Click="nextSecondHandButton_Click"/>
+            </Border>
+            <Border x:Name="prevSecondHandButtonBorder" Grid.Row="0" Grid.Column="1" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
+                <Button Content="&lt;" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="prevSecondHandButton" Cursor="Hand" Click="prevSecondHandButton_Click"/>
+            </Border>
+
+            <Image x:Name="card0Player1Image" Grid.Row="6" Grid.Column="1" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card1Player1Image" Grid.Row="6" Grid.Column="2" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card2Player1Image" Grid.Row="6" Grid.Column="3" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card3Player1Image" Grid.Row="6" Grid.Column="4" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card4Player1Image" Grid.Row="6" Grid.Column="5" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+            <Image x:Name="card5Player1Image" Grid.Row="6" Grid.Column="6" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
+
+            <Border x:Name="nextFirstHandButtonBorder" Grid.Row="7" Grid.Column="6" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
+                <Button Content=">" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="nextFirstHandButton" Cursor="Hand"/>
+            </Border>
+            <Border x:Name="prevFirstHandButtonBorder" Grid.Row="7" Grid.Column="1" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
+                <Button Content="&lt;" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="prevFirstHandButton" Cursor="Hand"/>
+            </Border>
+        </Grid>
+
+        <!--групбоксы и кнопка-->
+        
+        <Grid Width="120" Height="550" HorizontalAlignment="Right" Margin="0,0,350,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox x:Name="leaveCardsGroupBox" Header="Бито" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43" MouseLeftButtonUp="leaveCardsCount_Click">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Cursor="Hand">
+                    <Image x:Name="leaveCardsImage" HorizontalAlignment="Left" Width="50" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
+                    <TextBlock x:Name="leaveCardsCount" Height="50" Width="40" FontSize="30" TextAlignment="Right"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="trumpGroupBox" Header="Козырь" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image x:Name="trumpCardImage" HorizontalAlignment="Left" Width="55" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
+                    <Image x:Name="trumpImage" Width="35" Height="35"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="deckGroupBox" Header="Колода" Grid.Row="3" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43" MouseLeftButtonUp="deckGroupBox_MouseLeftButtonUp">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Cursor="Hand">
+                    <Image x:Name="gameDeckImage" HorizontalAlignment="Left" Width="50" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
+                    <TextBlock x:Name="gameDeckCount" Height="50" Width="40" FontSize="30" TextAlignment="Right"/>
+                </StackPanel>
+            </GroupBox>
+            <Border x:Name="takeButtonBorder" Grid.Row="5" Grid.Column="9" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43">
+                <Button Content="Беру" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="takeButton" Click="takeButton_Click" Cursor="Hand"></Button>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

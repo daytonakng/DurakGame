@@ -1,0 +1,190 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="img\cards.png" />
+    <None Remove="img\cards\ace_club.png" />
+    <None Remove="img\cards\ace_diamond.png" />
+    <None Remove="img\cards\ace_heart.png" />
+    <None Remove="img\cards\ace_spade.png" />
+    <None Remove="img\cards\back-black.png" />
+    <None Remove="img\cards\eight_club.png" />
+    <None Remove="img\cards\eight_diamond.png" />
+    <None Remove="img\cards\eight_heart.png" />
+    <None Remove="img\cards\eight_spade.png" />
+    <None Remove="img\cards\jack_club.png" />
+    <None Remove="img\cards\jack_diamond.png" />
+    <None Remove="img\cards\jack_heart.png" />
+    <None Remove="img\cards\jack_spade.png" />
+    <None Remove="img\cards\king_club.png" />
+    <None Remove="img\cards\king_diamond.png" />
+    <None Remove="img\cards\king_heart.png" />
+    <None Remove="img\cards\king_spade.png" />
+    <None Remove="img\cards\nine_club.png" />
+    <None Remove="img\cards\nine_diamond.png" />
+    <None Remove="img\cards\nine_heart.png" />
+    <None Remove="img\cards\nine_spade.png" />
+    <None Remove="img\cards\queen_club.png" />
+    <None Remove="img\cards\queen_diamond.png" />
+    <None Remove="img\cards\queen_heart.png" />
+    <None Remove="img\cards\queen_spade.png" />
+    <None Remove="img\cards\seven_club.png" />
+    <None Remove="img\cards\seven_diamond.png" />
+    <None Remove="img\cards\seven_heart.png" />
+    <None Remove="img\cards\seven_spade.png" />
+    <None Remove="img\cards\six_club.png" />
+    <None Remove="img\cards\six_diamond.png" />
+    <None Remove="img\cards\six_heart.png" />
+    <None Remove="img\cards\six_spade.png" />
+    <None Remove="img\cards\suit-club.png" />
+    <None Remove="img\cards\suit-diamond.png" />
+    <None Remove="img\cards\suit-heart.png" />
+    <None Remove="img\cards\suit-spade.png" />
+    <None Remove="img\cards\ten_club.png" />
+    <None Remove="img\cards\ten_diamond.png" />
+    <None Remove="img\cards\ten_heart.png" />
+    <None Remove="img\cards\ten_spade.png" />
+    <None Remove="img\durak.png" />
+    <None Remove="img\tabletop.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\cards.png" />
+    <Resource Include="img\cards\back-black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\cards\suit-club.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\cards\suit-diamond.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\cards\suit-heart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\cards\suit-spade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\durak.png" />
+    <Resource Include="img\tabletop.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="img\cards\00.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\20.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\21.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\22.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\23.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\30.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\31.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\33.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\40.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\41.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\42.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\43.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\50.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\51.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\52.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\53.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\60.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\61.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\62.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\63.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\70.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\71.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\72.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\73.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\80.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\81.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\82.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="img\cards\83.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
