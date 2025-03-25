@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -27,6 +28,9 @@ namespace DurakGame
         public int defaultColumnSecondPlayer;
 
         public bool isTaken = false;
+
+        public int pageFirstPlayer = 0;
+        public int pageSecondPlayer = 0;
 
         public GameTable()
         {
@@ -112,7 +116,7 @@ namespace DurakGame
 
             await Task.Delay(TimeSpan.FromSeconds(3));
 
-            int playerTime = randomPlayer.Next(1, 3);
+            int playerTime = randomPlayer.Next(1, 2);
 
             if (playerTime == 1)
             {
@@ -194,29 +198,34 @@ namespace DurakGame
 
                 logTextBox.Text = $"Игрок 2 взял карту {card.ShowCard()}\n\nОжидание хода Игрока 1...";
 
+                Grid.SetRow(image, defaultRowFirstPlayer);
+                Grid.SetColumn(image, defaultColumnFirstPlayer);
+
                 a.secondPlayerHand.Add(card);
-                secondHandImages.Add(image);
-                firstHandImages.Remove(image);
                 a.comparableCards.Clear();
+
+                MessageBox.Show($"Вы взяли карту {card.ShowCard()}\nЧисло карт в руке: {a.firstPlayerHand.Count}\nЧисло картинок в руке: {firstHandImages.Count}");
+
+                for (int i = firstHandImages.IndexOf(image); i < a.firstPlayerHand.Count - 1; i++)
+                {
+                    firstHandImages[i].Source =  firstHandImages[i + 1].Source;
+                }
+                firstHandImages[a.firstPlayerHand.Count-1].Visibility = Visibility.Hidden;
+                a.firstPlayerHand.Remove(card);
 
                 image.IsEnabled = true;
 
-                int cardsCount = secondHandImages.Count;
-
-                int newImageInd = secondHandImages.IndexOf(image);
-                int columnPosition = takeCardIndex[newImageInd];
-
-                Grid.SetRow(image, 1);
-                Grid.SetColumn(image, columnPosition);
-
-                for (int i = 6; i < cardsCount; i++)
-                {
-                    secondHandImages[i].Visibility = Visibility.Hidden;
-                }
-
                 cardsInGame.RemoveAt(0);
 
-                nextSecondHandButtonBorder.Visibility = Visibility.Visible;
+                ShowPage(a.secondPlayerHand, pageSecondPlayer, secondHandImages, prevSecondHandButtonBorder, nextSecondHandButtonBorder);
+                int topdeckCount = 6-a.firstPlayerHand.Count;
+                for (int i = 0; i < topdeckCount; i++)
+                {
+                    a.firstPlayerHand.Add(a.gameDeck.First());
+                    SetCardImage(a.gameDeck, firstHandImages, 0, a.firstPlayerHand.Count-1);
+                    firstHandImages[a.firstPlayerHand.Count - 1].Visibility = Visibility.Visible;
+                    a.gameDeck.RemoveAt(0);
+                }
 
                 foreach (Image cardImage in firstHandImages)
                 {
@@ -251,6 +260,8 @@ namespace DurakGame
             {
                 if (player1)
                 {
+                    MessageBox.Show($"Вы выбрали карту {a.firstPlayerHand[ind].ShowCard()}\nЧисло карт в руке: {a.firstPlayerHand.Count}\nЧисло картинок в руке: {firstHandImages.Count}");
+
                     foreach (Image cardImage in firstHandImages)
                     {
                         cardImage.IsEnabled = false;
@@ -275,13 +286,15 @@ namespace DurakGame
                 }
                 else
                 {
+                    MessageBox.Show($"Вы выбрали карту {a.secondPlayerHand[ind].ShowCard()}\nЧисло карт в руке: {a.secondPlayerHand.Count}\nЧисло картинок в руке: {secondHandImages.Count}");
+
                     foreach (Image cardImage in secondHandImages)
                     {
                         cardImage.IsEnabled = false;
                     }
 
                     cardsInGame.Add(image);
-                    a.comparableCards.Add(a.secondPlayerHand[ind]);
+                    a.comparableCards.Add(a.secondPlayerHand[pageSecondPlayer*6+ ind]);
                     playedCardPlayer2Ind.Add(ind);
 
                     defaultRowSecondPlayer = Grid.GetRow(image);
@@ -306,12 +319,15 @@ namespace DurakGame
                 {
                     a.comparableCards.Add(a.firstPlayerHand[ind]);
                     cardAccesed = a.CheckCard(a.comparableCards[0], a.comparableCards[1]) == true;
+                    MessageBox.Show($"Вы выбрали карту {a.firstPlayerHand[ind].ShowCard()}");
                 }
                 else
                 {
-                    a.comparableCards.Add(a.secondPlayerHand[ind]);
+                    a.comparableCards.Add(a.secondPlayerHand[ind+pageSecondPlayer*6]);
                     cardAccesed = a.CheckCard(a.comparableCards[0], a.comparableCards[1]) == true;
+                    MessageBox.Show($"Вы выбрали карту {a.secondPlayerHand[ind].ShowCard()}");
                 }
+
 
                 if (cardAccesed)
                 {
@@ -343,6 +359,38 @@ namespace DurakGame
                         {
                             cardImage.IsEnabled = true;
                         }
+
+                        if (a.gameDeck.Count > 0)
+                        {
+                            if (a.firstPlayerHand.Count < 6)
+                            {
+                                a.firstPlayerHand.Add(a.gameDeck[0]);
+                                SetCardImage(a.gameDeck, firstHandImages, 0, 0);
+                                a.gameDeck.RemoveAt(0);
+                            }
+                        }
+                        else
+                        {
+                            foreach (Image card in cardsInGame) { card.Visibility = Visibility.Hidden; }
+                            firstHandImages.RemoveAll(image => cardsInGame.Contains(image));
+
+                            trumpCardImage.Visibility = Visibility.Hidden;
+                            gameDeckImage.Visibility = Visibility.Hidden;
+                        }
+
+                        for (int i = firstHandImages.IndexOf(image); i < Math.Min(a.firstPlayerHand.Count - 1, 5); i++)
+                        {
+                            firstHandImages[i].Source = firstHandImages[i + 1].Source;
+                        }
+                        if (a.firstPlayerHand.Count > 5)
+                        {
+                            int x = (int)a.firstPlayerHand[pageFirstPlayer * 6 + 5].Number;
+                            int y = (int)a.firstPlayerHand[pageFirstPlayer * 6 + 5].CardMast;
+                            firstHandImages[5].Source = BitmapFrame.Create(new Uri("img/cards/" + x.ToString() + y.ToString() + ".png", UriKind.Relative));
+                        }
+                        else firstHandImages[Math.Min(a.firstPlayerHand.Count - 1, 5)].Visibility = Visibility.Hidden;
+
+                        ShowPage(a.firstPlayerHand, pageFirstPlayer, firstHandImages, prevSecondHandButtonBorder, nextSecondHandButtonBorder);
                     }
                     else
                     {
@@ -370,35 +418,42 @@ namespace DurakGame
                         {
                             cardImage.IsEnabled = false;
                         }
+                        if (a.gameDeck.Count > 0)
+                        {
+                            if (a.secondPlayerHand.Count < 6)
+                            {
+                                a.secondPlayerHand.Add(a.gameDeck[0]);
+                                SetCardImage(a.gameDeck, secondHandImages, 0, 0);
+                                a.gameDeck.RemoveAt(0);
+                            }
+                        }
+                        else
+                        {
+                            foreach (Image card in cardsInGame) { card.Visibility = Visibility.Hidden; }
+
+                            trumpCardImage.Visibility = Visibility.Hidden;
+                            gameDeckImage.Visibility = Visibility.Hidden;
+                        }
+                        for (int i = secondHandImages.IndexOf(image); i < Math.Min(a.secondPlayerHand.Count - 1, 5); i++)
+                        {
+                            secondHandImages[i].Source = secondHandImages[i + 1].Source;
+                        }
+                        for (int i = firstHandImages.IndexOf(cardsInGame[0]); i < Math.Min(a.firstPlayerHand.Count - 1, 5); i++)
+                        {
+                            firstHandImages[i].Source = firstHandImages[i + 1].Source;
+                        }
+                        if (a.secondPlayerHand.Count > 5)
+                        {
+                            int x = (int)a.secondPlayerHand[pageSecondPlayer * 6 + 5].Number;
+                            int y = (int)a.secondPlayerHand[pageSecondPlayer * 6 + 5].CardMast;
+                            secondHandImages[5].Source = BitmapFrame.Create(new Uri("img/cards/" + x.ToString() + y.ToString() + ".png", UriKind.Relative));
+                        }
+                        else secondHandImages[Math.Min(a.secondPlayerHand.Count - 1, 5)].Visibility = Visibility.Hidden;
+
+                        ShowPage(a.secondPlayerHand, pageSecondPlayer, secondHandImages, prevSecondHandButtonBorder, nextSecondHandButtonBorder);
                     }
 
                     foreach (var item in a.comparableCards) { a.leaveCards.Add(item); }
-
-                    if (a.gameDeck.Count > 0)
-                    {
-                        foreach (int index in playedCardPlayer1Ind)
-                        {
-                            a.firstPlayerHand.Insert(index, a.gameDeck.First());
-                            SetCardImage(a.gameDeck, firstHandImages, 0, index);
-                            a.gameDeck.RemoveAt(0);
-                        }
-
-                        foreach (int index in playedCardPlayer2Ind)
-                        {
-                            a.secondPlayerHand.Insert(index, a.gameDeck.First());
-                            SetCardImage(a.gameDeck, secondHandImages, 0, index);
-                            a.gameDeck.RemoveAt(0);
-                        }
-                    }
-                    else
-                    {
-                        foreach (Image card in cardsInGame) { card.Visibility = Visibility.Hidden; }
-                        firstHandImages.RemoveAll(image => cardsInGame.Contains(image));
-                        secondHandImages.RemoveAll(image => cardsInGame.Contains(image));
-
-                        trumpCardImage.Visibility = Visibility.Hidden;
-                        gameDeckImage.Visibility = Visibility.Hidden;
-                    }
 
                     a.comparableCards.Clear();
                     cardsInGame.Clear();
@@ -445,36 +500,65 @@ namespace DurakGame
             scrollViewer.ScrollToEnd();
         }
 
+        private void ShowPage(List<Card> playerHand, int page, List<Image> playerImages,Border borderPre,Border borderNext)
+        {
+            if (page * 6 + 6 >= playerHand.Count && page>0)
+            {
+                borderNext.Visibility = Visibility.Hidden;
+                borderPre.Visibility = Visibility.Visible;
+                int cardCount = playerHand.Count % 6;
+                for (int i = 0; i < cardCount; i++)
+                {
+                    
+                    int x = (int)playerHand[page * 6 + i].Number;
+                    int y = (int)playerHand[page * 6 + i].CardMast;
+                    playerImages[i].Source = BitmapFrame.Create(new Uri("img/cards/" + x.ToString() + y.ToString() + ".png", UriKind.Relative));
+                    playerImages[i].Visibility = Visibility.Visible;
+                }
+                for (int i = cardCount; i < 6; i++) { playerImages[i].Visibility = Visibility.Hidden; }
+            }
+            else
+            {
+                if (page == 0)
+                {
+                    if (playerHand.Count > 6)
+                    {
+                        borderNext.Visibility = Visibility.Visible;
+                        borderPre.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        borderNext.Visibility = Visibility.Hidden;
+                        borderPre.Visibility = Visibility.Hidden;
+                    }
+                }
+                else
+                {
+                    borderNext.Visibility = Visibility.Visible;
+                    borderPre.Visibility = Visibility.Visible;
+                }
+                for (int i = 0;i<6;i++) 
+                {
+                    int x = (int)playerHand[page * 6 + i].Number;
+                    int y = (int)playerHand[page * 6 + i].CardMast;
+                    playerImages[i].Source = BitmapFrame.Create(new Uri("img/cards/" + x.ToString() + y.ToString() + ".png", UriKind.Relative));
+                    playerImages[i].Visibility = Visibility.Visible;
+                }
+            }
+        }
+
         private void nextSecondHandButton_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 6;  i++)
-            {
-                secondHandImages[i].Visibility = Visibility.Hidden;
-            }
+            pageSecondPlayer++;
 
-            for (int i = 6; i < secondHandImages.Count; i++)
-            {
-                secondHandImages[i].Visibility = Visibility.Visible;
-            }
-
-            nextSecondHandButtonBorder.Visibility = Visibility.Hidden;
-            prevSecondHandButtonBorder.Visibility = Visibility.Visible;
+            ShowPage(a.secondPlayerHand, pageSecondPlayer, secondHandImages, prevSecondHandButtonBorder,nextSecondHandButtonBorder);
         }
 
         private void prevSecondHandButton_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 6; i < secondHandImages.Count; i++)
-            {
-                secondHandImages[i].Visibility = Visibility.Hidden;
-            }
+            pageSecondPlayer--;
 
-            for (int i = 0; i < 6; i++)
-            {
-                secondHandImages[i].Visibility = Visibility.Visible;
-            }
-
-            prevSecondHandButtonBorder.Visibility = Visibility.Hidden;
-            nextSecondHandButtonBorder.Visibility = Visibility.Visible;
+            ShowPage(a.secondPlayerHand, pageSecondPlayer, secondHandImages, prevSecondHandButtonBorder, nextSecondHandButtonBorder);
         }
     }
 }

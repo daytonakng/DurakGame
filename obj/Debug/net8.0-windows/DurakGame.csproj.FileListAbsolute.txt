@@ -51,6 +51,7 @@ C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.Ge
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.AssemblyInfoInputs.cache
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.AssemblyInfo.cs
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.csproj.CoreCompileInputs.cache
+C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.sourcelink.json
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.dll
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\refint\DurakGame.dll
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.pdb

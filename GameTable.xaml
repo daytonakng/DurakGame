@@ -13,7 +13,7 @@
             <ImageBrush ImageSource="/img/tabletop.jpg"></ImageBrush>
         </Grid.Background>
 
-        <StackPanel x:Name="durakLogoImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800" Height="400" Orientation="Horizontal">
+        <StackPanel x:Name="durakLogoImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800" Height="400" Orientation="Horizontal" Visibility="Hidden">
             <Image HorizontalAlignment="Left" Width="300" Height="300" Source="img/cards.png"></Image>
             <Image HorizontalAlignment="Left" Width="500" Height="300" Source="img/durak.png"></Image>
         </StackPanel>

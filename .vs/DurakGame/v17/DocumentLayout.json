@@ -15,12 +15,12 @@
       "RelativeMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|solutionrelative:game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|C:\\Users\\daytonakng\\source\\repos\\DurakGame\\deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|solutionrelative:deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|C:\\Users\\daytonakng\\source\\repos\\DurakGame\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|solutionrelative:card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|C:\\Users\\daytonakng\\source\\repos\\DurakGame\\deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22C51BC6-FD89-4370-8F71-1A34421766BE}|DurakGame.csproj|solutionrelative:deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,20 +34,19 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Card.cs",
               "DocumentMoniker": "C:\\Users\\daytonakng\\source\\repos\\DurakGame\\Card.cs",
               "RelativeDocumentMoniker": "Card.cs",
               "ToolTip": "C:\\Users\\daytonakng\\source\\repos\\DurakGame\\Card.cs",
               "RelativeToolTip": "Card.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAADIAAAApAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAADIAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T07:59:55.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T07:59:55.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Deck.cs",
               "DocumentMoniker": "C:\\Users\\daytonakng\\source\\repos\\DurakGame\\Deck.cs",
               "RelativeDocumentMoniker": "Deck.cs",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "Deck.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T07:59:56.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T07:59:56.385Z"
             },
             {
               "$type": "Document",
@@ -66,10 +64,9 @@
               "RelativeDocumentMoniker": "Game.cs",
               "ToolTip": "C:\\Users\\daytonakng\\source\\repos\\DurakGame\\Game.cs",
               "RelativeToolTip": "Game.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGoAAABAAAAA",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAAAGoAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T07:59:57.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T07:59:57.437Z"
             },
             {
               "$type": "Document",
@@ -79,9 +76,9 @@
               "RelativeDocumentMoniker": "GameTable.xaml.cs",
               "ToolTip": "C:\\Users\\daytonakng\\source\\repos\\DurakGame\\GameTable.xaml.cs",
               "RelativeToolTip": "GameTable.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAiAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAArwD8BAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T07:59:46.414Z",
+              "WhenOpened": "2025-03-20T17:13:24.544Z",
               "EditorCaption": ""
             },
             {
