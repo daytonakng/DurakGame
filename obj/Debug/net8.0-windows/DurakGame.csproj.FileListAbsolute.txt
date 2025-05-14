@@ -57,3 +57,5 @@ C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\refint\Durak
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.pdb
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame.genruntimeconfig.cache
 C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\ref\DurakGame.dll
+C:\Users\daytonakng\source\repos\DurakGame\bin\Debug\net8.0-windows\specialsound.mp3
+C:\Users\daytonakng\source\repos\DurakGame\obj\Debug\net8.0-windows\DurakGame_Content.g.cs

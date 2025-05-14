@@ -7,6 +7,68 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="GameTable">
+    <Page.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FF8B5B43"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="White"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="White"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="ForestGreen"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="ForestGreen"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Monotype Corsiva"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="1"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="17" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF8B5B43"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF8B5B43"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid x:Name="mainGrid">
         <Grid.Background>
@@ -18,16 +80,18 @@
             <Image HorizontalAlignment="Left" Width="500" Height="300" Source="img/durak.png"></Image>
         </StackPanel>
 
+        <TextBlock x:Name="secondPlayerText" Text="Игрок 2" FontFamily="Monotype Corsiva" FontSize="80" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" Margin="0,100,0,0"/>
+        <TextBlock x:Name="firstPlayerText" Text="Игрок 1" FontFamily="Monotype Corsiva" FontSize="80" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="0,0,0,85"/>
+
+        <Button x:Name="changeTextOnScreen" Width="40" Height="40" Margin="905,-690,50,130" Opacity="0" Click="changeTextOnScreen_Click"/>
+
         <!--кнопки-->
 
-        <Border x:Name="startButtonBorder" CornerRadius="15" BorderBrush="#FFF3F0F0" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="100" Background="#FF8B5B43">
-            <Button x:Name="startButton" BorderThickness="0" Background="Transparent" Content="Играть" FontSize="16" Foreground="White" Click="startButton_Click" Cursor="Hand"/>
-        </Border>
-        <Border CornerRadius="15" BorderBrush="#FFF3F0F0" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100" Background="#FF8B5B43">
-            <Button x:Name="exitButton" BorderThickness="0" Background="Transparent" Content="Выйти" FontSize="16" Foreground="White" Click="exitButton_Click" Cursor="Hand"/>
-        </Border>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="startButton" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="100" Content="Играть" Click="startButton_Click" Visibility="Visible"/>
 
-        <TextBox x:Name="logTextBox" Width="400" Height="150" HorizontalAlignment="Left" Margin="390,20,0,0" IsReadOnly="True" Background="Transparent" BorderThickness="0" TextWrapping="WrapWithOverflow" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Hidden" AcceptsReturn="True">
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="exitButton" Width="100" Height="50" HorizontalAlignment="Left" Margin="100" VerticalAlignment="Bottom" Content="Выйти" Click="exitButton_Click"/>
+
+        <TextBox x:Name="logTextBox" Width="400" Height="150" HorizontalAlignment="Left" Margin="390,20,0,0" IsReadOnly="True" Background="Transparent" BorderThickness="0" TextWrapping="WrapWithOverflow" TextAlignment="Center" VerticalContentAlignment="Center" FontFamily="Monotype Corsiva" FontSize="20" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Hidden" AcceptsReturn="True">
             <TextBox.Resources>
                 <Style TargetType="{x:Type ScrollViewer}">
                     <EventSetter Event="ScrollChanged" Handler="AutoScrolltoEnd"></EventSetter>
@@ -61,6 +125,8 @@
 
             <!--верхний ряд-->
 
+            <TextBlock x:Name="secondPlayerHandCount" Grid.Row="2" Grid.Column="0" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Visibility="Hidden"/>
+
             <Image x:Name="card0Player2Image" Grid.Row="1" Grid.Column="1" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
             <Image x:Name="card1Player2Image" Grid.Row="1" Grid.Column="2" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
             <Image x:Name="card2Player2Image" Grid.Row="1" Grid.Column="3" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
@@ -68,12 +134,10 @@
             <Image x:Name="card4Player2Image" Grid.Row="1" Grid.Column="5" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
             <Image x:Name="card5Player2Image" Grid.Row="1" Grid.Column="6" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
 
-            <Border x:Name="nextSecondHandButtonBorder" Grid.Row="0" Grid.Column="6" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
-                <Button Content=">" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="nextSecondHandButton" Cursor="Hand" Click="nextSecondHandButton_Click"/>
-            </Border>
-            <Border x:Name="prevSecondHandButtonBorder" Grid.Row="0" Grid.Column="1" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
-                <Button Content="&lt;" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="prevSecondHandButton" Cursor="Hand" Click="prevSecondHandButton_Click"/>
-            </Border>
+            <Button x:Name="nextSecondHandButton" Style="{DynamicResource ButtonStyle1}" Width="70" Height="40" Grid.Row="0" Grid.Column="6" Content=">" Click="nextSecondHandButton_Click" Visibility="Hidden"/>
+            <Button x:Name="prevSecondHandButton" Style="{DynamicResource ButtonStyle1}" Width="70" Height="40" Grid.Row="0" Grid.Column="1" Content="&lt;" Click="prevSecondHandButton_Click" Visibility="Hidden"/>
+
+            <TextBlock x:Name="firstPlayerHandCount" Grid.Row="5" Grid.Column="0" FontSize="70" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Visibility="Hidden"/>
 
             <Image x:Name="card0Player1Image" Grid.Row="6" Grid.Column="1" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
             <Image x:Name="card1Player1Image" Grid.Row="6" Grid.Column="2" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
@@ -82,13 +146,13 @@
             <Image x:Name="card4Player1Image" Grid.Row="6" Grid.Column="5" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
             <Image x:Name="card5Player1Image" Grid.Row="6" Grid.Column="6" Source="img/cards/back-black.png" MouseLeftButtonUp="playCard" Cursor="Hand"/>
 
-            <Border x:Name="nextFirstHandButtonBorder" Grid.Row="7" Grid.Column="6" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
-                <Button Content=">" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="nextFirstHandButton" Cursor="Hand"/>
-            </Border>
-            <Border x:Name="prevFirstHandButtonBorder" Grid.Row="7" Grid.Column="1" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="70" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43" Visibility="Hidden">
-                <Button Content="&lt;" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="prevFirstHandButton" Cursor="Hand"/>
-            </Border>
+            <Button x:Name="nextFirstHandButton" Style="{DynamicResource ButtonStyle1}" Width="70" Height="40" Grid.Row="7" Grid.Column="6" Content=">" Click="nextFirstHandButton_Click" Visibility="Hidden"/>
+            <Button x:Name="prevFirstHandButton" Style="{DynamicResource ButtonStyle1}" Width="70" Height="40" Grid.Row="7" Grid.Column="1" Content="&lt;" Click="prevFirstHandButton_Click" Visibility="Hidden"/>
+            
         </Grid>
+
+        <Border x:Name="hideFirstCardsBorder" Width="650" Height="100" HorizontalAlignment="Center" Margin="0,470,0,0" Background="Black" Visibility="Hidden"/>
+        <Border x:Name="hideSecondCardsBorder" Width="650" Height="100" HorizontalAlignment="Center" Margin="0,-420,0,0" Background="Black" Visibility="Hidden"/>
 
         <!--групбоксы и кнопка-->
         
@@ -104,27 +168,27 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <GroupBox x:Name="leaveCardsGroupBox" Header="Бито" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43" MouseLeftButtonUp="leaveCardsCount_Click">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Cursor="Hand">
-                    <Image x:Name="leaveCardsImage" HorizontalAlignment="Left" Width="50" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
-                    <TextBlock x:Name="leaveCardsCount" Height="50" Width="40" FontSize="30" TextAlignment="Right"/>
+            <GroupBox x:Name="leaveCardsGroupBox" Header="Бито" FontFamily="Monotype Corsiva" FontSize="20" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image x:Name="leaveCardsImage" HorizontalAlignment="Left" Width="50" Height="60" Source="img/cards/back-black.png" MouseLeftButtonUp="leaveCardsCount_Click" Cursor="Hand" Visibility="Hidden"/>
+                    <TextBlock x:Name="leaveCardsCount" Height="50" Width="40" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox x:Name="trumpGroupBox" Header="Козырь" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43">
+            <GroupBox x:Name="trumpGroupBox" Header="Козырь" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" FontFamily="Monotype Corsiva" FontSize="20" Foreground="White" Background="#FF8B5B43">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image x:Name="trumpCardImage" HorizontalAlignment="Left" Width="55" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
+                    <Image x:Name="trumpCardImage" HorizontalAlignment="Left" Width="55" Height="60" Source="img/cards/back-black.png" Visibility="Hidden"/>
                     <Image x:Name="trumpImage" Width="35" Height="35"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox x:Name="deckGroupBox" Header="Колода" Grid.Row="3" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" Foreground="White" Background="#FF8B5B43" MouseLeftButtonUp="deckGroupBox_MouseLeftButtonUp">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Cursor="Hand">
-                    <Image x:Name="gameDeckImage" HorizontalAlignment="Left" Width="50" Height="65" Source="img/cards/back-black.png" Visibility="Hidden"/>
-                    <TextBlock x:Name="gameDeckCount" Height="50" Width="40" FontSize="30" TextAlignment="Right"/>
+            <GroupBox x:Name="deckGroupBox" Header="Колода" Grid.Row="3" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" Height="90" Width="120" FontFamily="Monotype Corsiva" FontSize="20" Foreground="White" Background="#FF8B5B43">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image x:Name="gameDeckImage" HorizontalAlignment="Left" Width="50" Height="60" Source="img/cards/back-black.png" MouseLeftButtonUp="deckGroupBox_MouseLeftButtonUp" Cursor="Hand" Visibility="Hidden"/>
+                    <TextBlock x:Name="gameDeckCount" Height="50" Width="40" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                 </StackPanel>
             </GroupBox>
-            <Border x:Name="takeButtonBorder" Grid.Row="5" Grid.Column="9" CornerRadius="15" BorderBrush="White" BorderThickness="3" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8B5B43">
-                <Button Content="Беру" BorderThickness="0" Background="Transparent" FontSize="15" Foreground="White" x:Name="takeButton" Click="takeButton_Click" Cursor="Hand"></Button>
-            </Border>
+
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="50" Content="Беру" Grid.Row="5" Grid.Column="9" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="takeButton" Click="takeButton_Click" Cursor="Hand"></Button>
         </Grid>
+        <Image x:Name="specImage" Width="1600" Source="img/Uw6lH_tX8w0.jpg" HorizontalAlignment="Center" Visibility="Hidden"></Image>
     </Grid>
 </Page>

@@ -53,6 +53,15 @@
     <None Remove="img\cards\ten_spade.png" />
     <None Remove="img\durak.png" />
     <None Remove="img\tabletop.jpg" />
+    <None Remove="img\userLoginIcon.png" />
+    <None Remove="img\Uw6lH_tX8w0.jpg" />
+    <None Remove="specialsound.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="specialsound.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -74,6 +83,8 @@
     </Resource>
     <Resource Include="img\durak.png" />
     <Resource Include="img\tabletop.jpg" />
+    <Resource Include="img\userLoginIcon.png" />
+    <Resource Include="img\Uw6lH_tX8w0.jpg" />
   </ItemGroup>
 
   <ItemGroup>
